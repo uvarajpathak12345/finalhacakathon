@@ -4,38 +4,38 @@ export function AnimatedTestimonialsDemo() {
   const testimonials = [
     {
       quote:
-        "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-      name: "Sarah Chen",
-      designation: "Product Manager at TechFlow",
+        "Provides care for mental health conditions, including depression, anxiety, schizophrenia, and substance abuse disorders.",
+      name: "Dr. Taylor",
+      designation: "Psychiatrist",
+      src: "./public/girl2.jpg",
+    },
+    {
+      quote:
+        "Expert in treating eye conditions and performing surgeries such as cataract removal, glaucoma management, and vision correction.",
+      name: "Dr. Wilson",
+      designation: "Ophthalmologist",
       src: "./public/1.jpg",
     },
     {
       quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-      name: "Michael Rodriguez",
-      designation: "CTO at InnovateSphere",
-      src: "./public/2.jpg",
+        "Focuses on female reproductive health, offering care for pregnancy, menstruation, menopause, and conditions like PCOS.",
+      name: "Dr. Garcia",
+      designation: "Gynecologist",
+      src: "./public/girl1.webp",
     },
     {
       quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-      name: "Emily Watson",
-      designation: "Operations Director at CloudScale",
-      src: "./public/3.jpg",
+        "Specializes in diagnosing and treating heart-related conditions, including heart disease, hypertension, and cardiac surgery.",
+      name: "Dr. Smith",
+      designation: "Cardiologist",
+      src: "./public/1.jpg",
     },
     {
       quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-      name: "James Kim",
-      designation: "Engineering Lead at DataPro",
-      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-      name: "Lisa Thompson",
-      designation: "VP of Technology at FutureNet",
-      src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "Focuses on treating skin, hair, and nail conditions such as acne, eczema, psoriasis, and skin cancer.",
+      name: "Dr. Johnson",
+      designation: "Dermatologist",
+      src: "./public/12.jpg",
     },
   ];
 

@@ -4,6 +4,7 @@ import ResponsiveAppBar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatedTestimonialsDemo } from "./pages/Pageanimated-testimonials";
 import AppointmentForm from "./pages/Appointment";
+import { CompareDemo } from "./pages/CompareDemo";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
     <Router>
       <ResponsiveAppBar></ResponsiveAppBar>
       <Routes>
+        
+        <Route path ={'/'} element={<CompareDemo></CompareDemo>}></Route>
         <Route path ={'/appointment'} element={<AppointmentForm></AppointmentForm>}></Route>
         <Route path={'/healthInfo'} element={<HealthForm></HealthForm>}></Route>     
         <Route path={'/doctorinfo'} element={<AnimatedTestimonialsDemo></AnimatedTestimonialsDemo>}></Route>     

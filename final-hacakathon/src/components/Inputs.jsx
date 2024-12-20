@@ -152,7 +152,7 @@ Please ensure the response is structured, clear, and actionable. Avoid vague ans
         {/* Diseases Field */}
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
-            Diseases:
+            Symptoms you are Facing
           </label>
           <input
             type="text"

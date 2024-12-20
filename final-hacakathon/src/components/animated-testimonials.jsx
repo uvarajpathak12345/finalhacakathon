@@ -104,6 +104,8 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
                 ease: "easeInOut",
               }}
             >
+
+              {/* yaa chaa data */}
               <h3 className="text-2xl font-bold dark:text-white text-black">
                 {testimonials[active].name}
               </h3>

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";;
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const AppointmentForm = () => {
   const [date, setDate] = useState("");
@@ -39,30 +39,45 @@ const AppointmentForm = () => {
     "04:00 PM",
   ];
 
+  const newAppointment = {
+    name: fullName,
+    time: time,
+    doctor: doctor,
+    number: phoneNumber,
+    date: date,
+  };
 
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/get");
+        const uniqueAppointments = Array.from(
+          new Map(
+            response.data.map((appointment) => [
+              JSON.stringify(appointment),
+              appointment,
+            ])
+          ).values()
+        );
+        setAppointments(uniqueAppointments.slice(0, 10));
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
 
-  const Fetchdata = async () => {
-     try{
-      let response = await axios.get('https://localhost:300/get')
-        setAppointments(response.data)
-        console.log(response.data)
-     }
-     catch (error){
-        console.log(error)  
-     }
-  }
+    fetchAppointments();
+  }, []);
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     const today = new Date();
-    const year = today.getFullYear();
-    const maxDate = `${year + 1}-12-31`;
+    const maxDate = `${today.getFullYear() + 1}-12-31`;
 
-    if (selectedDate === today.toISOString().split("T")[0] || new Date(selectedDate) <= today) {
-      setError("Error: You cannot select today or a past date.");
+    if (new Date(selectedDate) <= today) {
+      setError("You cannot select today or a past date.");
       setDate("");
     } else if (selectedDate > maxDate) {
-      setError("Error: You cannot select a date beyond the end of 2025.");
+      setError("You cannot select a date beyond the end of next year.");
       setDate("");
     } else {
       setError("");
@@ -70,8 +85,15 @@ const AppointmentForm = () => {
     }
   };
 
-  const handleDelete = (indexToRemove) => {
+  const handleDelete = (indexToRemove, id) => {
     setAppointments(appointments.filter((_, index) => index !== indexToRemove));
+
+    try {
+      let response = axios.post(`http://localhost:3000/delete/${id}`);
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -82,24 +104,41 @@ const AppointmentForm = () => {
     }
 
     const newAppointment = { fullName, date, time, phoneNumber, doctor };
+    const isDuplicate = appointments.some(
+      (appointment) =>
+        appointment.fullName === newAppointment.fullName &&
+        appointment.date === newAppointment.date &&
+        appointment.time === newAppointment.time &&
+        appointment.phoneNumber === newAppointment.phoneNumber &&
+        appointment.doctor === newAppointment.doctor
+    );
+
+    if (isDuplicate) {
+      setError("Duplicate appointment detected. Please modify the details.");
+      return;
+    }
+
+    try {
+      let response = axios.post("http://localhost:3000/create", newAppointment);
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+
     setAppointments([...appointments, newAppointment]);
 
-    // Clear form fields
+    // Reset form fields
     setFullName("");
     setDate("");
     setTime("");
     setPhoneNumber("");
     setDoctor("");
     setError("");
-
-    Fetchdata();
-
-
-
   };
 
   return (
     <div className="container mx-auto p-4 mt-9">
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-md shadow-md space-y-4 max-w-md mx-auto"
@@ -179,7 +218,7 @@ const AppointmentForm = () => {
         </button>
       </form>
 
-      {/* Table for displaying appointments */}
+      {/* Appointments Table */}
       <div className="mt-8">
         <h3 className="text-xl font-bold text-center">Appointments</h3>
         {appointments.length > 0 ? (
@@ -197,7 +236,7 @@ const AppointmentForm = () => {
               </thead>
               <tbody>
                 {appointments.map((appointment, index) => (
-                  <tr key={index} className="text-center">
+                  <tr key={index}>
                     <td className="px-4 py-2 border">{appointment.fullName}</td>
                     <td className="px-4 py-2 border">{appointment.date}</td>
                     <td className="px-4 py-2 border">{appointment.time}</td>
@@ -205,7 +244,7 @@ const AppointmentForm = () => {
                     <td className="px-4 py-2 border">{appointment.doctor}</td>
                     <td className="px-4 py-2 border">
                       <button
-                        onClick={() => handleDelete(index)}
+                        onClick={() => handleDelete(index, appointment._id)}
                         className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                       >
                         Cancel
