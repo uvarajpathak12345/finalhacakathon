@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExpandableCardDemo } from './Expandable';
+import HealthChatbox from './Chatbot';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
     </div>
     <div className='mb-16'>
     <ExpandableCardDemo></ExpandableCardDemo>
+    <HealthChatbox></HealthChatbox>
     </div>
     </>
   );
