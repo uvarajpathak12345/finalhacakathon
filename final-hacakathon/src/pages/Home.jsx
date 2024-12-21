@@ -4,7 +4,7 @@ import { ExpandableCardDemo } from './Expandable';
 export default function Home() {
   return (
     <>
-    <div className="bg-white text-black flex  items-center justify-center min-h-screen">
+    <div className="bg-white text-black md:flex grid  items-center justify-center min-h-screen">
       {/* Text Section */}
       <div className="text-center max-w-2xl px-4 mb-8">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">

@@ -69,6 +69,8 @@ Please provide the information in a structured format with proper headings and b
    - Include a few sample meal suggestions, if applicable.  
 
 Please ensure the response is structured, clear, and actionable. Avoid vague answers or unnecessary disclaimers. Thank you!
+
+Note:-if user send the person age greater then 90, then, send error that it is invalid age of people and if people send less 0 and less then it then send error
 `,
                 },
               ],
