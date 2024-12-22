@@ -52,26 +52,41 @@ const HealthForm = () => {
             {
               parts: [
                 {
-                  text: `Based on my health details, please analyze my situation and provide insights. My name is ${formData.fullName}, I am ${formData.age} years old, and I am experiencing the following issues: ${formData.diseases}.  
+                  text: `You are an AI health assistant. Please analyze the following details:
 
-Please provide the information in a structured format with proper headings and bullet points for clarity:  
+- **Full Name:** ${formData.fullName}
+- **Age:** ${formData.age} years old
+- **Current Health Issues:** ${formData.diseases}
 
-1. **Possible Health Risks and Conditions:**  
-   - List the potential diseases or conditions I might face.  
-   - Provide percentage probabilities for each condition, if possible.  
+Please follow these instructions:
 
-2. **Precautions to Take:**  
+1. **Age Validation:**
+   - If the user's age is less than 0 or greater than 90, please provide an error message: "Invalid age. Age must be between 1 and 90 years old."
+   - If the user provides a valid age, proceed with the analysis.
+
+2. **Health Analysis (If valid age):**  
+   Please structure the response in the following format:
+   
+   **Possible Health Risks and Conditions:**  
+   - List the potential diseases or conditions the user might face based on the provided health issues.  
+   - Provide probabilities for each condition if available, or mention if it's not possible to estimate probabilities.
+
+   **Precautions to Take:**  
    - Suggest practical steps to prevent or manage these conditions.  
-   - Include tips for general health and well-being.  
+   - Provide tips for general health and well-being.  
 
-3. **Recommended Foods and Dietary Advice:**  
-   - Provide a list of specific foods or nutrients that can help alleviate or manage these issues.  
-   - Include a few sample meal suggestions, if applicable.  
+   **Recommended Foods and Dietary Advice:**  
+   - Suggest specific foods or nutrients that can help alleviate or manage the health issues.  
+   - Include a few sample meal suggestions based on the condition.  
 
-Please ensure the response is structured, clear, and actionable. Avoid vague answers or unnecessary disclaimers. Thank you!
+3. **Invalid Input:**  
+   - If the user's input does not match the expected format and does not provide symtoms that he/she facing , return an error message: "Invalid input. Please provide valid health information including full name, age, and current health issues."
 
-Note:-if user send the person age greater then 90, then, send error that it is invalid age of people and if people send less 0 and less then it then send error
-`,
+⚠️ **Guidelines:**  
+- Ensure the response is structured, clear, and actionable.  
+- Avoid vague or speculative answers, and only provide data-backed information.
+
+If the input is valid (age between 1 and 90, proper health issues format), proceed with the analysis. Otherwise, return an error message.`,
                 },
               ],
             },

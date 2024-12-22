@@ -85,11 +85,11 @@ const AppointmentForm = () => {
     }
   };
 
-  const handleDelete = (indexToRemove, id) => {
+  
+  const handleDelete = async (indexToRemove,id) => {
     setAppointments(appointments.filter((_, index) => index !== indexToRemove));
-
     try {
-      let response = axios.post(`http://localhost:3000/delete/${id}`);
+      let response = await axios.delete(`http://localhost:3000/delete/${id}`);
       console.log(response.data);
     } catch (err) {
       console.log(err);
@@ -188,7 +188,13 @@ const AppointmentForm = () => {
           <input
             type="tel"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => {
+              if(isNaN(e.target.value)){
+                alert('text is not a number')
+              }else{
+                setPhoneNumber(e.target.value)
+              }
+            }}
             placeholder="Enter phone number"
             className="p-2 border border-gray-300 rounded-md"
           />
@@ -244,7 +250,7 @@ const AppointmentForm = () => {
                     <td className="px-4 py-2 border">{appointment.doctor}</td>
                     <td className="px-4 py-2 border">
                       <button
-                        onClick={() => handleDelete(index, appointment._id)}
+                        onClick={() => handleDelete(index,appointment._id)}
                         className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                       >
                         Cancel

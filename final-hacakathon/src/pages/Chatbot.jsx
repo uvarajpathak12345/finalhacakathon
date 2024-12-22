@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatedTestimonialsDemo } from "../pages/Pageanimated-testimonials";
 
 const HealthChatbox = () => {
   const [messages, setMessages] = useState([]);
@@ -119,8 +120,9 @@ User Question: ${input}`,
   };
 
   return (
+    <>
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-blue-600">
+      <h1 className="text-3xl font-bold mb-6 text-black text-center">
         Health Chat Assistant
       </h1>
       <div className="bg-white shadow-lg rounded-lg w-full max-w-2xl flex flex-col h-[600px] border border-gray-200">
@@ -140,7 +142,7 @@ User Question: ${input}`,
                 <img
                   src={msg.image}
                   alt="Uploaded"
-                  className="mt-2 rounded-md max-w-[200px]"
+                  className="mt-2 rounded-md max-w-[100%] sm:max-w-[200px] mx-auto"
                 />
               )}
             </div>
@@ -153,7 +155,7 @@ User Question: ${input}`,
         </div>
 
         {/* Input Section */}
-        <div className="p-4 bg-white border-t border-gray-200 flex items-center space-x-2">
+        <div className="p-4 bg-white border-t border-gray-200 flex flex-col sm:flex-row items-center space-x-0 sm:space-x-2">
           <input
             type="text"
             value={input}
@@ -161,35 +163,39 @@ User Question: ${input}`,
             placeholder="Ask health-related questions..."
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="hidden"
-            id="upload"
-          />
-          <label
-            htmlFor="upload"
-            className="px-4 py-2 bg-green-500 text-white rounded-lg cursor-pointer hover:bg-green-600"
-          >
-            Upload
-          </label>
-          <button
-            onClick={handleSendMessage}
-            disabled={loading}
-            className={`px-4 py-2 rounded-lg text-white ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
+          <div className="flex items-center mt-2 sm:mt-0">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
+              id="upload"
+            />
+            <label
+              htmlFor="upload"
+              className="px-4 py-2 bg-green-500 text-white rounded-lg cursor-pointer hover:bg-green-600"
+            >
+              Upload
+            </label>
+            <button
+              onClick={handleSendMessage}
+              disabled={loading}
+              className={`px-4 py-2 rounded-lg text-white ml-2 ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
+              }`}
+            >
+              {loading ? "Sending..." : "Send"}
+            </button>
+          </div>
         </div>
       </div>
 
-      {apiError && <p className="text-red-500 mt-4">Error: {apiError}</p>}
+      {apiError && <p className="text-red-500 mt-4 text-center">Error: {apiError}</p>}
     </div>
+    <AnimatedTestimonialsDemo></AnimatedTestimonialsDemo>
+    </>
   );
 };
 

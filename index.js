@@ -9,6 +9,8 @@ const app = express()
 app.use(cors());
 app.use(express.json())
 
+
+
 connection ((err) => {
     if (!err){
         app.listen(3000, () => {
@@ -49,7 +51,7 @@ app.post('/create', (req, res) => {
   });
 
 
-  app.post('/delete/:id' , (req,res) => {
+  app.delete('/delete/:id' , (req,res) => {
      const id = req.params.id
    
      if(ObjectId.isValid(id)){

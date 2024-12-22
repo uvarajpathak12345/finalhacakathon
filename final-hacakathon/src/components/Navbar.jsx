@@ -20,7 +20,7 @@ const pages = [{
   title:'HealthInfo',
   routing:'/healthInfo'
 },{
-  title:'doctorInfo',
+  title:'AIChatbot',
   routing:'/doctorinfo'
 },{
   title:'appointment',
